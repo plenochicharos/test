@@ -1,0 +1,36 @@
+name: Blank
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+
+jobs:
+  tests:
+    name: PHP ${{ matrix.php }} with Laravel ${{ matrix.laravel }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php: [ '8.2', '8.2.2', '8.2.25', '8.3', '8.3.1', '8.3.13' ]
+      max-parallel: 3
+
+    steps:
+      - name: Wait
+        run: sleep $((RANDOM % 15 + 1))
+
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          coverage: none
+
+      - name: Install dependencies
+        uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 5
+          max_attempts: 5
+          command: composer update -W --no-interaction --no-progress --ignore-platform-req=php
