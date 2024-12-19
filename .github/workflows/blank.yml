@@ -15,9 +15,6 @@ jobs:
       max-parallel: 3
 
     steps:
-      - name: Wait
-        run: sleep $((RANDOM % 15 + 1))
-
       - name: Checkout Code
         uses: actions/checkout@v3
 
