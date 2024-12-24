@@ -15,7 +15,7 @@
         "vaened/laravel-criteria": "^1.1",
         "vaened/dictionary-flow": "^2.0",
         "vaened/php-search-engine": "^0.4",
-        "vaened/laravel-sequenceable": "^4.1",
+        "vaened/laravel-sequenceable": "^5.0",
         "vaened/php-criteria-language": "^0.2"
     }
 }
